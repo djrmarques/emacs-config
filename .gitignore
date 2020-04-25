@@ -1,0 +1,8 @@
+*init.el#
+*~
+.emacs.org
+auto-save-list/
+config.el
+elpa/
+init.el~
+

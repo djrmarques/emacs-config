@@ -1,0 +1,25 @@
+
+* Evil Mode
+#+BEGIN_SRC elisp
+(use-package evil
+  :ensure t
+  :init
+  (evil-mode 1))
+#+END_SRC
+
+* Which Key
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode)
+  )
+#+END_SRC
+
+* Beacon mode
+#+BEGIN_SRC emacs-lisp
+(use-package beacon
+  :ensure t
+  :init
+  (beacon-mode 1))
+#+END_SRC
