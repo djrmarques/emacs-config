@@ -8,6 +8,15 @@
 (unless (package-installed-p 'use-package) (package-refresh-contents) (package-install 'use-package))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+(setq inhibit-startup-message t) 
+(setq initial-scratch-message nil)
+
+(use-package evil
+  :ensure t
+  :init
+  (evil-mode 1))
+
 (org-babel-load-file (expand-file-name "~/.config/emacs/config.org"))
 
 (setq ring-bell-function 'ignore)

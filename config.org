@@ -1,12 +1,4 @@
 
-* Evil Mode
-#+BEGIN_SRC elisp
-(use-package evil
-  :ensure t
-  :init
-  (evil-mode 1))
-#+END_SRC
-
 * Which Key
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
