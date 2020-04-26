@@ -1,4 +1,3 @@
-
 * Which Key
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
@@ -73,4 +72,50 @@
   :ensure t
   :config
   (dashboard-setup-startup-hook))
+  #+END_SRC
+* Python
+  #+BEGIN_SRC emacs-lisp
+    (use-package elpy
+	:ensure t
+	:init
+	(elpy-enable)
+	:config
+	(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+	(setq python-shell-interpreter "ipython3"
+	    python-shell-interpreter-args "-i")
+
+    )
+      
+  
+    (add-hook 'python-mode-hook
+		(linum-mode 1)
+		) 
+	      
+    (setq elpy-rpc-python-command "python3")
+    
+  #+END_SRC
+* Hydra
+  #+BEGIN_SRC emacs-lisp
+      (use-package hydra
+      :ensure t
+      )
+
+
+    (defun get-org-conf ()
+      (interactive)
+      (find-file org-config-file)
+      )
+      
+    (defun get-init ()
+      (interactive)
+      (find-file init-file)
+      )
+      
+
+    (defhydra hydra-zoom (global-map "<f2>")
+      "Find Files"
+      ("c" get-org-conf "Find org conf")
+      ("i" get-init "Find org conf")
+)
+
   #+END_SRC
