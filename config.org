@@ -20,6 +20,7 @@
   #+BEGIN_SRC emacs-lisp
     (use-package evil-magit
     :ensure t
+    :config
     (global-set-key (kbd "s-m") 'magit)
     )
   #+END_SRC
@@ -65,4 +66,11 @@
     (ad-activate 'ansi-term)
 
     (global-set-key (kbd "<s-return>") 'ansi-term)
+  #+END_SRC
+* Dashboard
+  #+BEGIN_SRC emacs-lisp
+  (use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
   #+END_SRC
