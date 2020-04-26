@@ -9,3 +9,4 @@ transient/*
 transient/history.el
 /ido.last
 /recentf
+/elpy/

@@ -7,12 +7,21 @@
   )
 #+END_SRC
 
+* Buffers
+** Kill all buffers
+#+BEGIN_SRC emacs-lisp
+  (defun kill-all-buffers()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list))
+  )
+#+END_SRC
+   
 * Beacon mode
 #+BEGIN_SRC emacs-lisp
-(use-package beacon
-  :ensure t
-  :init
-  (beacon-mode 1))
+  (use-package beacon
+    :ensure t
+    :init
+    (beacon-mode 1))
 #+END_SRC
 
 * Magit
@@ -74,6 +83,7 @@
   (dashboard-setup-startup-hook))
   #+END_SRC
 * Python
+** Install Elpy
   #+BEGIN_SRC emacs-lisp
     (use-package elpy
 	:ensure t
@@ -85,15 +95,31 @@
 	    python-shell-interpreter-args "-i")
 
     )
-      
-  
+    
+  #+END_SRC
+** Hooks
+   #+BEGIN_SRC emacs-lisp
     (add-hook 'python-mode-hook
 		(linum-mode 1)
 		) 
 	      
     (setq elpy-rpc-python-command "python3")
-    
-  #+END_SRC
+   
+   #+END_SRC
+** Variables
+   #+BEGIN_SRC emacs-lisp
+   (setq python-indent-offset 4)
+   (setq indent-tabs-mode nil)
+   #+END_SRC
+** Create environment
+   #+BEGIN_SRC emacs-lisp
+     (defun make-venv ()
+       "Creates and enviroment and activates it"
+       (interactive)
+       (start-process-shell-command "Make Environment" nil "python3 -m venv env")
+       (start-process-shell-command "Activate Environment" nil "source env/bin/activate")
+     )
+   #+END_SRC
 * Hydra
   #+BEGIN_SRC emacs-lisp
       (use-package hydra
@@ -112,10 +138,11 @@
       )
       
 
-    (defhydra hydra-zoom (global-map "<f2>")
+    (defhydra hydra-files (global-map "<f2>")
       "Find Files"
       ("c" get-org-conf "Find org conf")
       ("i" get-init "Find org conf")
+      ("k" kill-all-buffers "Kill al buffers")
 )
 
   #+END_SRC
