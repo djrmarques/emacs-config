@@ -7,3 +7,4 @@ elpa/
 init.el~
 transient/*
 transient/history.el
+/ido.last
