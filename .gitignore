@@ -5,4 +5,5 @@ auto-save-list/
 config.el
 elpa/
 init.el~
-
+transient/*
+transient/history.el

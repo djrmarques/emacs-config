@@ -46,3 +46,12 @@
     (setq ido-everywhere t)
     (ido-mode 1)
   #+END_SRC
+* Company Mode
+  #+BEGIN_SRC emacs-lisp
+  (use-package company
+  :ensure t
+  :init 
+  (add-hook 'after-init-hook 'global-company-mode)
+)
+  #+END_SRC
+  
