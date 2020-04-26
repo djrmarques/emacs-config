@@ -20,6 +20,7 @@
   #+BEGIN_SRC emacs-lisp
     (use-package evil-magit
     :ensure t
+    (global-set-key (kbd "s-m") 'magit)
     )
   #+END_SRC
 
