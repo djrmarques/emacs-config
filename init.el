@@ -12,7 +12,7 @@
 (setq inhibit-startup-message t) 
 (setq initial-scratch-message nil)
 
-use-package evil
+(use-package evil
   :ensure t
   :init
   (evil-mode 1))
