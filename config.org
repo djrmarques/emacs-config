@@ -7,6 +7,20 @@
   )
 #+END_SRC
 
+* Theme
+  #+BEGIN_SRC 
+  (use-package zenburn-theme
+  :ensure t
+  :init
+  (load-theme 'zenburn t)
+)
+
+  #+END_SRC
+  
+* Fonts
+  #+BEGIN_SRC 
+  (set-frame-font "Hack-14" nil t)
+  #+END_SRC
 * Messages buffer
   Hide Messages buffer
   #+BEGIN_SRC emacs-lisp
