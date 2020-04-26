@@ -117,28 +117,15 @@
     )
     
   #+END_SRC
-** Hooks
-   #+BEGIN_SRC emacs-lisp
-    (add-hook 'python-mode-hook
-		(linum-mode 1)
-		) 
-	      
-   
-   #+END_SRC
 ** Variables
    #+BEGIN_SRC emacs-lisp
    (setq python-indent-offset 4)
    (setq indent-tabs-mode nil)
    #+END_SRC
-** Create environment
-   #+BEGIN_SRC emacs-lisp
-     (defun make-venv ()
-       "Creates and enviroment and activates it"
-       (interactive)
-       (start-process-shell-command "Make Environment" nil "python3 -m venv env")
-       (start-process-shell-command "Activate Environment" nil "source env/bin/activate")
-     )
-   #+END_SRC
+* Linum Mode
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-l") 'linum-mode)
+  #+END_SRC
 * Hydra
   #+BEGIN_SRC emacs-lisp
       (use-package hydra
@@ -165,3 +152,17 @@
 )
 
   #+END_SRC
+* Org Mode
+** Agenda
+   #+BEGIN_SRC emacs-lisp
+     (defun org-agenda-show-agenda-and-todo (&optional arg)
+       (interactive "P")
+       (org-agenda arg "n")
+       )
+       (global-set-key (kbd "<f5>") 'org-agenda-show-agenda-and-todo)
+
+   #+END_SRC
+** Org Babel
+   #+BEGIN_SRC emacs-lisp
+   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
+   #+END_SRC

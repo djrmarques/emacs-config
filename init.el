@@ -34,6 +34,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files '("~/Projects/networkx/org.org"))
  '(package-selected-packages
    '(zenburn-theme zenburn hydra dashboard company company-mode telephone-line evil-org evil-magit beacon which-key use-package)))
 (custom-set-faces
