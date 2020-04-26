@@ -7,6 +7,12 @@
   )
 #+END_SRC
 
+* Messages buffer
+  Hide Messages buffer
+  #+BEGIN_SRC emacs-lisp
+  (setq-default message-log-max nil)
+  (kill-buffer "*Messages*")
+  #+END_SRC
 * Buffers
 ** Kill all buffers
 #+BEGIN_SRC emacs-lisp
