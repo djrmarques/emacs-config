@@ -17,14 +17,15 @@
   :init
   (evil-mode 1))
 
-(org-babel-load-file (expand-file-name "~/.config/emacs/config.org"))
+(setq config-file "~/.config/emacs/config.org")
+(org-babel-load-file (expand-file-name config-file))
 
 (setq ring-bell-function 'ignore)
 
 (global-prettify-symbols-mode t) 
 
 (tool-bar-mode -1)
-(tool-bar-mode -1)
+(menu-bar-mode -1)
 (scroll-bar-mode -1)
 
 (custom-set-variables
@@ -32,7 +33,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(beacon which-key use-package)))
+ '(package-selected-packages
+   '(telephone-line evil-org evil-magit beacon which-key use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
