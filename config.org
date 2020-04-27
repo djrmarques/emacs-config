@@ -61,6 +61,19 @@
      :init
      (add-hook 'org-mode-hook 'evil-org-mode))
    #+END_SRC
+** Agenda
+   #+BEGIN_SRC emacs-lisp
+     (defun org-agenda-show-agenda-and-todo (&optional arg)
+       (interactive "P")
+       (org-agenda arg "n")
+       )
+       (global-set-key (kbd "<f5>") 'org-agenda-show-agenda-and-todo)
+
+   #+END_SRC
+** Org Babel
+   #+BEGIN_SRC emacs-lisp
+   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
+   #+END_SRC
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
@@ -152,17 +165,3 @@
 )
 
   #+END_SRC
-* Org Mode
-** Agenda
-   #+BEGIN_SRC emacs-lisp
-     (defun org-agenda-show-agenda-and-todo (&optional arg)
-       (interactive "P")
-       (org-agenda arg "n")
-       )
-       (global-set-key (kbd "<f5>") 'org-agenda-show-agenda-and-todo)
-
-   #+END_SRC
-** Org Babel
-   #+BEGIN_SRC emacs-lisp
-   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
-   #+END_SRC
