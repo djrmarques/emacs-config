@@ -56,10 +56,17 @@
 * Org Mode
 ** Evil Org
    #+BEGIN_SRC emacs-lisp
-     (use-package evil-org
-     :ensure t
-     :init
-     (add-hook 'org-mode-hook 'evil-org-mode))
+  (use-package evil-org
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook
+		(lambda ()
+		(evil-org-set-key-theme)))
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys)
+)
    #+END_SRC
 ** Agenda
    #+BEGIN_SRC emacs-lisp
@@ -68,6 +75,7 @@
        (org-agenda arg "n")
        )
        (global-set-key (kbd "<f5>") 'org-agenda-show-agenda-and-todo)
+       
 
    #+END_SRC
 ** Org Babel
