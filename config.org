@@ -8,7 +8,7 @@
 #+END_SRC
 
 * Theme
-  #+BEGIN_SRC 
+  #+BEGIN_SRC emacs-lisp
   (use-package zenburn-theme
   :ensure t
   :init
@@ -18,7 +18,7 @@
   #+END_SRC
   
 * Fonts
-  #+BEGIN_SRC 
+  #+BEGIN_SRC emacs-lisp
   (set-frame-font "Hack-14" nil t)
   #+END_SRC
 * Messages buffer
@@ -53,6 +53,7 @@
     )
   #+END_SRC
 
+* Org Mode
 * Org Mode
 ** Evil Org
    #+BEGIN_SRC emacs-lisp
