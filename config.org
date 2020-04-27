@@ -54,7 +54,6 @@
   #+END_SRC
 
 * Org Mode
-* Org Mode
 ** Evil Org
    #+BEGIN_SRC emacs-lisp
      (use-package evil-org
@@ -74,7 +73,13 @@
 ** Org Babel
    #+BEGIN_SRC emacs-lisp
    (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
+   
+   (setq org-babel-python-command "python3")
    #+END_SRC
+
+   #+RESULTS:
+   : python3
+
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
