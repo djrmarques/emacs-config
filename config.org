@@ -116,6 +116,15 @@
   :config
   (dashboard-setup-startup-hook))
   #+END_SRC
+* Programming general
+  #+BEGIN_SRC emacs-lisp
+    (use-package rainbow-delimiters
+      :ensure t
+      :config
+      (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+      )
+
+  #+END_SRC
 * Python
 ** Install Elpy
   #+BEGIN_SRC emacs-lisp
@@ -138,7 +147,8 @@
    #+END_SRC
 * Linum Mode
   #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-l") 'linum-mode)
+    (global-set-key (kbd "C-l") 'linum-mode)
+    (add-hook 'prog-mode-hook 'linum-mode)
   #+END_SRC
 * Hydra
   #+BEGIN_SRC emacs-lisp
