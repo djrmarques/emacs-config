@@ -82,12 +82,8 @@
 ** Org Babel
    #+BEGIN_SRC emacs-lisp
    (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
-   
    (setq org-babel-python-command "python3")
    #+END_SRC
-
-   #+RESULTS:
-   : python3
 
 ** Org source window
    #+BEGIN_SRC emacs-lisp
