@@ -66,6 +66,7 @@
 		(evil-org-set-key-theme)))
     (require 'evil-org-agenda)
     (evil-org-agenda-set-keys)
+   (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
 )
    #+END_SRC
 ** Agenda
@@ -88,6 +89,10 @@
    #+RESULTS:
    : python3
 
+** Org source window
+   #+BEGIN_SRC emacs-lisp
+     (setq org-src-window-setup 'current-window)
+   #+END_SRC
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
