@@ -66,8 +66,8 @@
 		(evil-org-set-key-theme)))
     (require 'evil-org-agenda)
     (evil-org-agenda-set-keys)
-   (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
 )
+    (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))
    #+END_SRC
 ** Agenda
    #+BEGIN_SRC emacs-lisp
@@ -98,12 +98,6 @@
       )
   
   #+END_SRC
-* Ido Mode
-  #+BEGIN_SRC emacs-lisp
-    (setq ido-enable-flex-matching t)
-    (setq ido-everywhere t)
-    (ido-mode 1)
-  #+END_SRC
 * Company Mode
   #+BEGIN_SRC emacs-lisp
   (use-package company
@@ -115,7 +109,7 @@
 * Ansi-Term
   #+BEGIN_SRC emacs-lisp
     (setq explicit-shell-file-name "/bin/bash")
-  
+    
     (defvar my-term-shell "/bin/bash")
     (defadvice ansi-term (before force-bash)
       (interactive (list my-term-shell)))
@@ -139,6 +133,11 @@
       )
 
   #+END_SRC
+** Linum Mode
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-l") 'linum-mode)
+     (add-hook 'prog-mode-hook 'linum-mode)
+   #+END_SRC
 * Python
 ** Install Elpy
   #+BEGIN_SRC emacs-lisp
@@ -159,11 +158,18 @@
    (setq python-indent-offset 4)
    (setq indent-tabs-mode nil)
    #+END_SRC
-* Linum Mode
-  #+BEGIN_SRC emacs-lisp
-    (global-set-key (kbd "C-l") 'linum-mode)
-    (add-hook 'prog-mode-hook 'linum-mode)
-  #+END_SRC
+** Jedi
+   #+BEGIN_SRC emacs-lisp
+     (use-package company-jedi
+     :ensure t
+     )
+     (defun my/python-mode-hook ()
+       (add-to-list 'company-backends 'company-jedi)
+       )
+
+     (add-hook 'python-mode-hook 'my/python-mode-hook)
+
+   #+END_SRC
 * Hydra
   #+BEGIN_SRC emacs-lisp
       (use-package hydra
@@ -190,3 +196,45 @@
 )
 
   #+END_SRC
+* Ivy
+  #+BEGIN_SRC emacs-lisp
+  (use-package swiper
+  :ensure t
+  )
+  
+  (use-package counsel
+  :ensure t
+  )
+
+  (use-package ivy
+  :ensure t
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  ;; enable this if you want `swiper' to use it
+  ;; (setq search-default-mode #'char-fold-to-regexp)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c k") 'counsel-yank-pop)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  )
+  
+  ;; Define evil binding
+  (define-key evil-normal-state-map (kbd "/") 'swiper)
+  
+  #+END_SRC
+
+* AMX
+#+BEGIN_SRC emacs-lisp
+  (use-package amx
+  :ensure t
+  )
+#+END_SRC
