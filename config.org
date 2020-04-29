@@ -35,7 +35,13 @@
   (mapc 'kill-buffer (buffer-list))
   )
 #+END_SRC
-   
+** Kill all buffers except current
+   #+BEGIN_SRC emacs-lisp
+(defun kill-other-buffers() 
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
+)
+   #+END_SRC
 * Beacon mode
 #+BEGIN_SRC emacs-lisp
   (use-package beacon
@@ -98,6 +104,11 @@
       )
   
   #+END_SRC
+** Display Time
+   #+BEGIN_SRC emacs-lisp
+   (setq display-time-24h-format t)
+   (display-time-mode 1)
+   #+END_SRC
 * Company Mode
   #+BEGIN_SRC emacs-lisp
   (use-package company
@@ -193,6 +204,7 @@
       ("c" get-org-conf "Find org conf")
       ("i" get-init "Find org conf")
       ("k" kill-all-buffers "Kill al buffers")
+      ("o" kill-other-buffers "Kill al buffers")
 )
 
   #+END_SRC
@@ -231,10 +243,4 @@
   (define-key evil-normal-state-map (kbd "/") 'swiper)
   
   #+END_SRC
-
-* AMX
-#+BEGIN_SRC emacs-lisp
-  (use-package amx
-  :ensure t
-  )
-#+END_SRC
+  
