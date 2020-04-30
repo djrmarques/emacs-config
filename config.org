@@ -102,7 +102,6 @@
       :init 
       (telephone-line-mode t)
       )
-  
   #+END_SRC
 ** Display Time
    #+BEGIN_SRC emacs-lisp
@@ -136,6 +135,7 @@
   (dashboard-setup-startup-hook))
   #+END_SRC
 * Programming general
+** Rainbow Delimiters
   #+BEGIN_SRC emacs-lisp
     (use-package rainbow-delimiters
       :ensure t
@@ -144,10 +144,25 @@
       )
 
   #+END_SRC
+** Smart Parens
+   #+BEGIN_SRC emacs-lisp
+   (use-package smartparens
+   :ensure t
+   :init
+   (add-hook 'prog-mode-hook #'smartparens-mode)
+   )
+   #+END_SRC
 ** Linum Mode
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-l") 'linum-mode)
      (add-hook 'prog-mode-hook 'linum-mode)
+   #+END_SRC
+** Flycheck
+   #+BEGIN_SRC emacs-lisp
+     (use-package flycheck
+       :ensure t
+       :init (global-flycheck-mode)
+     )
    #+END_SRC
 * Python
 ** Install Elpy
@@ -243,4 +258,3 @@
   (define-key evil-normal-state-map (kbd "/") 'swiper)
   
   #+END_SRC
-  

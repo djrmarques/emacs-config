@@ -36,7 +36,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files '("~/Projects/networkx/org.org"))
  '(package-selected-packages
-   '(company-jedi memory-usage ag counsel swiper ivy rainbow-delimiters zenburn-theme zenburn hydra dashboard company company-mode telephone-line evil-org evil-magit beacon which-key use-package)))
+   '(flycheck smartparens company-jedi memory-usage ag counsel swiper ivy rainbow-delimiters zenburn-theme zenburn hydra dashboard company company-mode telephone-line evil-org evil-magit beacon which-key use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
