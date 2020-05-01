@@ -19,6 +19,7 @@
 
 (setq org-config-file "~/.config/emacs/config.org")
 (setq init-file "~/.config/emacs/init.el")
+(setq stumpwmconfig "~/.config/stumpwm/config")
 (org-babel-load-file (expand-file-name org-config-file))
 
 (setq ring-bell-function 'ignore)

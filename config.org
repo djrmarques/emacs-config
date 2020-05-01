@@ -198,29 +198,35 @@
    #+END_SRC
 * Hydra
   #+BEGIN_SRC emacs-lisp
-      (use-package hydra
-      :ensure t
-      )
+	  (use-package hydra
+	  :ensure t
+	  )
 
 
-    (defun get-org-conf ()
-      (interactive)
-      (find-file org-config-file)
-      )
+	(defun get-org-conf ()
+	  (interactive)
+	  (find-file org-config-file)
+	  )
       
-    (defun get-init ()
-      (interactive)
-      (find-file init-file)
-      )
+	(defun get-init ()
+	  (interactive)
+	  (find-file init-file)
+	  )
+      
+	(defun get-stump ()
+	  (interactive)
+	  (find-file stumpwmconfig)
+	  )
       
 
-    (defhydra hydra-files (global-map "<f2>")
-      "Find Files"
-      ("c" get-org-conf "Find org conf")
-      ("i" get-init "Find org conf")
-      ("k" kill-all-buffers "Kill al buffers")
-      ("o" kill-other-buffers "Kill al buffers")
-)
+	(defhydra hydra-files (global-map "<f2>")
+	  "Find Files"
+	  ("c" get-org-conf "Find org conf")
+	  ("i" get-init "Find org conf")
+	  ("k" kill-all-buffers "Kill al buffers")
+	  ("o" kill-other-buffers "Kill al buffers")
+	  ("s" get-stump "Stump config")
+    )
 
   #+END_SRC
 * Ivy
