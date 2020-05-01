@@ -9,7 +9,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(setq inhibit-startup-message t) 
+(setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
 (use-package evil
