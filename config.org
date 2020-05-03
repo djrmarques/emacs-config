@@ -269,6 +269,6 @@
   (use-package sly
   :ensure t
   )
-  
   #+END_SRC
+* Manual search
   
