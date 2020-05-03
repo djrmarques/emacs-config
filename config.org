@@ -271,4 +271,14 @@
   )
   #+END_SRC
 * Manual search
-  
+  Function to search for manuals Eg
+  #+begin_src emacs-lisp
+    (defun search-index-manual(man-name)
+    "Searches the index of a specific manual inserted as argument"
+    (interactive)
+    (info man-name)
+    (call-interactively 'Info-index)
+)
+
+(search-index-manual "StumpWM")
+  #+end_src
