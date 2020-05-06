@@ -95,6 +95,18 @@
    #+BEGIN_SRC emacs-lisp
      (setq org-src-window-setup 'current-window)
    #+END_SRC
+** Org Publish
+   #+begin_src emacs-lisp
+   (setq org-publish-project-alist
+      '(("org"
+         :base-directory "~/Projects/blog/"
+         :publishing-directory "~/Projects/dest_blog/"
+         :section-numbers nil
+         :table-of-contents nil
+)))
+
+   #+end_src
+   
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
@@ -230,6 +242,7 @@
 
   #+END_SRC
 * Ivy
+** Install libraries
   #+BEGIN_SRC emacs-lisp
   (use-package swiper
   :ensure t
@@ -264,6 +277,13 @@
   (define-key evil-normal-state-map (kbd "/") 'swiper)
   
   #+END_SRC
+** Add advice to remeber the last used
+   #+begin_src emacs-lisp
+     (defun my-demo-function ()
+       (setq last-counsel-M-x-command (caar command-history)))
+
+     (advice-add #'counsel-M-x :after #'my-demo-function) 
+   #+end_src
 * Common Lisp
   #+BEGIN_SRC emacs-lisp
   (use-package sly
@@ -272,6 +292,7 @@
   #+END_SRC
 * Manual search
   Function to search for manuals Eg
+** Generic function
   #+begin_src emacs-lisp
     (defun search-index-manual(man-name)
     "Searches the index of a specific manual inserted as argument"
@@ -279,6 +300,24 @@
     (info man-name)
     (call-interactively 'Info-index)
 )
-
-(search-index-manual "StumpWM")
+  #+end_src
+  
+** Bindings
+  #+begin_src emacs-lisp
+      (defun stumpwm-index-search()
+      "Searches the StumpWM manual index"
+      (interactive)
+      (let ((word-to-yank (thing-at-point 'word)))
+      (kill-new word-to-yank)
+      (search-index-manual "StumpWM")
+      (evil-paste-pop)
+      )
+    )
+  #+end_src
+* AMX
+  #+begin_src emacs-lisp
+  (use-package amx
+  :ensure t
+  :init
+  (amx-mode))
   #+end_src
