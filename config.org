@@ -52,7 +52,7 @@
 
 * Magit
   #+BEGIN_SRC emacs-lisp
-    (use-package evil-magit
+    (use-package magit
     :ensure t
     :config
     (global-set-key (kbd "s-m") 'magit)
@@ -60,21 +60,6 @@
   #+END_SRC
 
 * Org Mode
-** Evil Org
-   #+BEGIN_SRC emacs-lisp
-  (use-package evil-org
-    :ensure t
-    :after org
-    :init
-    (add-hook 'org-mode-hook 'evil-org-mode)
-    (add-hook 'evil-org-mode-hook
-		(lambda ()
-		(evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading))))
-    (require 'evil-org-agenda)
-    (evil-org-agenda-set-keys)
-)
-
-   #+END_SRC
 ** Agenda
    #+BEGIN_SRC emacs-lisp
      (defun org-agenda-show-agenda-and-todo (&optional arg)
@@ -96,17 +81,39 @@
      (setq org-src-window-setup 'current-window)
    #+END_SRC
 ** Org Publish
+*** Define the alist
    #+begin_src emacs-lisp
+   (setq publish-directory-path "~/Projects/dest_blog/")
+   
    (setq org-publish-project-alist
-      '(("org"
+      '(("org-notes"
          :base-directory "~/Projects/blog/"
-         :publishing-directory "~/Projects/dest_blog/"
+         :base-directory ".org"
+         :publishing-directory publish-directory-path
+	 :recursive t
          :section-numbers nil
          :table-of-contents nil
-)))
+	 :publishing-function org-html-publish-to-html)
+	 ("org-static"
+	 :base-directory "~/org/"
+	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+	 :publishing-directory publish-directory-path
+	 :recursive t
+	 :publishing-function org-publish-attachment
+	 )
+	 ("org" :components ("org-notes" "org-static"))
+))
 
    #+end_src
-   
+*** Set Publish Hotkey
+    #+begin_src emacs-lisp
+	  (defun publish-and-view()
+	  (interactive)
+	  (org-publish "org")
+	  (run-shell)
+      )
+
+    #+end_src
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
@@ -166,7 +173,6 @@
    #+END_SRC
 ** Linum Mode
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-l") 'linum-mode)
      (add-hook 'prog-mode-hook 'linum-mode)
    #+END_SRC
 ** Flycheck
@@ -238,6 +244,7 @@
 	  ("k" kill-all-buffers "Kill al buffers")
 	  ("o" kill-other-buffers "Kill al buffers")
 	  ("s" get-stump "Stump config")
+	  ("p" publish-and-view "Publish website and view")
     )
 
   #+END_SRC
@@ -273,9 +280,6 @@
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   )
   
-  ;; Define evil binding
-  (define-key evil-normal-state-map (kbd "/") 'swiper)
-  
   #+END_SRC
 ** Add advice to remeber the last used
    #+begin_src emacs-lisp
@@ -310,7 +314,6 @@
       (let ((word-to-yank (thing-at-point 'word)))
       (kill-new word-to-yank)
       (search-index-manual "StumpWM")
-      (evil-paste-pop)
       )
     )
   #+end_src

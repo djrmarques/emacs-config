@@ -12,13 +12,8 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
-(use-package evil
-  :ensure t
-  :init
-  (evil-mode 1))
-
 (setq org-config-file "~/.config/emacs/config.org")
-(setq init-file "~/.config/emacs/init.el")
+(setq init-file "~/.emacs")
 (setq stumpwmconfig "~/.config/stumpwm/config")
 (org-babel-load-file (expand-file-name org-config-file))
 
@@ -29,18 +24,3 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files nil)
- '(package-selected-packages
-   '(amx ox-hugo sly flycheck smartparens company-jedi memory-usage ag counsel swiper ivy rainbow-delimiters zenburn-theme zenburn hydra dashboard company company-mode telephone-line evil-org evil-magit beacon which-key use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
