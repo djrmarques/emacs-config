@@ -17,6 +17,18 @@
 
   #+END_SRC
   
+* Editing
+  #+begin_src emacs-lisp
+  (defun yank-line ()
+  "Yanks current line"
+  (interactive)
+  (call-interactively 'move-end-of-line)
+  (call-interactively 'set-mark-command)
+  (call-interactively 'move-beginning-of-line)
+  (call-interactively 'kill-region)
+  (call-interactively 'yank)
+)
+  #+end_src
 * Fonts
   #+BEGIN_SRC emacs-lisp
   (set-frame-font "Hack-14" nil t)
