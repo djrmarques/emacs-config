@@ -98,28 +98,41 @@
      (setq org-src-window-setup 'current-window)
    #+END_SRC
 ** Org Publish
+*** Create the preamble 
+#+begin_src emacs-lisp
+(defvar blog-html-preamble 
+"
+<div class='nav'>
+<ul>
+<li><a href='/'>Home</a></li>
+<li><a href='/blog/index.html'>Blog</a></li>
+<li><a href='http://github.com/NicolasPetton'>GitHub</a></li>
+<li><a href='http://twitter.com/NicolasPetton'>Twitter</a></li>
+<li><a href='/contact.html'>Contact</a></li>
+</ul>
+</div>")
+#+end_src
 *** Define the alist
    #+begin_src emacs-lisp
-   (setq publish-directory-path "~/Projects/djrmarques.github.io/")
-   
-   (setq org-publish-project-alist
+   (defvar publish-directory-path "~/Projects/djrmarques.github.io/")
+     (setq org-publish-project-alist
       '(("org-notes"
          :base-directory "~/Projects/blog/"
-         :base-directory ".org"
-         :publishing-directory ,publish-directory-path
+	 :base-extendion "org"
+         :publishing-directory "~/Projects/djrmarques.github.io/"
 	 :recursive t
-         :section-numbers nil
-	 :makeindex t
-         :table-of-contents nil
+  	 :makeindex t
+	 :html-preamble "This is just a test"
+	 :html-preamble t
+	 :html-postamble "Test Postamble"
 	 :publishing-function org-html-publish-to-html
-	 :auto-sitemap t
-	 )
+	)
 	 ("org-static"
 	 :base-directory "~/org/"
 	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-	 :publishing-directory publish-directory-path
+	 :publishing-directory "~/Projects/djrmarques.github.io/"
 	 :recursive t
-	 :publishing-function ,publish-directory-path
+	 :publishing-function org-publish-attachment
 	 )
 	 ("org" :components ("org-notes" "org-static"))
 ))
@@ -145,6 +158,7 @@
 
 
     #+end_src
+
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
