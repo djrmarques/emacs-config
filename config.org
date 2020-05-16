@@ -124,20 +124,23 @@
    #+end_src
 *** Set Publish Hotkey
     #+begin_src emacs-lisp
-      (defun publish-and-view()
+      (defun publish-blog()
 	(interactive)
 	(org-publish "org")
 	)
 
-      (defun view-project()
+      (defun view-blog()
 	(interactive)
 	(start-process-shell-command "view-index" nil "next ~/Projects/djrmarques.github.io/index.html")
 	)
 
       (defhydra blog-hydra (global-map "<f6>")
 	"Hydra for saving the blog posts"
-	("p" publish-and-view "Publish website and view")
-	)
+	("p" publish-blog "Publish website")
+	("v" view-blog  "View Website")
+)
+
+
     #+end_src
 * Powerline 
   #+BEGIN_SRC emacs-lisp
