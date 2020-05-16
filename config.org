@@ -100,23 +100,26 @@
 ** Org Publish
 *** Define the alist
    #+begin_src emacs-lisp
-   (setq publish-directory-path "~/Projects/dest_blog/")
+   (setq publish-directory-path "~/Projects/djrmarques.github.io/")
    
    (setq org-publish-project-alist
       '(("org-notes"
          :base-directory "~/Projects/blog/"
          :base-directory ".org"
-         :publishing-directory "~/Projects/djrmarques.github.io/"
+         :publishing-directory ,publish-directory-path
 	 :recursive t
          :section-numbers nil
+	 :makeindex t
          :table-of-contents nil
-	 :publishing-function org-html-publish-to-html)
+	 :publishing-function org-html-publish-to-html
+	 :auto-sitemap t
+	 )
 	 ("org-static"
 	 :base-directory "~/org/"
 	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
 	 :publishing-directory publish-directory-path
 	 :recursive t
-	 :publishing-function "~/Projects/djrmarques.github.io/"
+	 :publishing-function ,publish-directory-path
 	 )
 	 ("org" :components ("org-notes" "org-static"))
 ))
@@ -124,21 +127,21 @@
    #+end_src
 *** Set Publish Hotkey
     #+begin_src emacs-lisp
-      (defun publish-blog()
-	(interactive)
-	(org-publish "org")
-	)
+	    (defun publish-blog()
+	      (interactive)
+	      (org-publish "org")
+	      )
 
-      (defun view-blog()
-	(interactive)
-	(start-process-shell-command "view-index" nil "next ~/Projects/djrmarques.github.io/index.html")
-	)
-
-      (defhydra blog-hydra (global-map "<f6>")
-	"Hydra for saving the blog posts"
-	("p" publish-blog "Publish website")
-	("v" view-blog  "View Website")
-)
+	    (defun view-blog()
+	      (interactive)
+	      (start-process-shell-command "view-index" nil "next ~/Projects/djrmarques.github.io/theindex.html")
+	      )
+	  
+	    (defhydra blog-hydra (global-map "<f6>")
+	      "Hydra for saving the blog posts"
+	      ("p" publish-blog "Publish website")
+	      ("v" view-blog  "View Website")
+      )
 
 
     #+end_src
