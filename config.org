@@ -18,6 +18,7 @@
   #+END_SRC
   
 * Editing
+** Yank Line
   #+begin_src emacs-lisp
   (defun yank-line ()
   "Yanks current line"
@@ -29,6 +30,10 @@
   (call-interactively 'yank)
 )
   #+end_src
+** Quote word
+   #+begin_src emacs-lisp
+   #+end_src
+
 * Fonts
   #+BEGIN_SRC emacs-lisp
   (set-frame-font "Hack-14" nil t)
@@ -101,7 +106,7 @@
       '(("org-notes"
          :base-directory "~/Projects/blog/"
          :base-directory ".org"
-         :publishing-directory publish-directory-path
+         :publishing-directory "~/Projects/djrmarques.github.io/"
 	 :recursive t
          :section-numbers nil
          :table-of-contents nil
@@ -111,7 +116,7 @@
 	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
 	 :publishing-directory publish-directory-path
 	 :recursive t
-	 :publishing-function org-publish-attachment
+	 :publishing-function "~/Projects/djrmarques.github.io/"
 	 )
 	 ("org" :components ("org-notes" "org-static"))
 ))
@@ -119,15 +124,20 @@
    #+end_src
 *** Set Publish Hotkey
     #+begin_src emacs-lisp
-	       (defun publish-and-view()
-	       (interactive)
-	       (org-publish "org")
-	       (run-shell)
-	   )
+      (defun publish-and-view()
+	(interactive)
+	(org-publish "org")
+	)
+
+      (defun view-project()
+	(interactive)
+	(start-process-shell-command "view-index" nil "next ~/Projects/djrmarques.github.io/index.html")
+	)
+
       (defhydra blog-hydra (global-map "<f6>")
 	"Hydra for saving the blog posts"
 	("p" publish-and-view "Publish website and view")
-      )
+	)
     #+end_src
 * Powerline 
   #+BEGIN_SRC emacs-lisp
@@ -339,3 +349,7 @@
   :init
   (amx-mode))
   #+end_src
+
+
+
+
