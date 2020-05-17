@@ -112,10 +112,11 @@
 </ul>
 </div>")
 #+end_src
+*** Sitemap Format function
 *** Define the alist
    #+begin_src emacs-lisp
    (defvar publish-directory-path "~/Projects/djrmarques.github.io/")
-     (setq org-publish-project-alist
+      (setq org-publish-project-alist
       '(("org-notes"
          :base-directory "~/Projects/blog/"
 	 :base-extendion "org"
@@ -123,9 +124,10 @@
 	 :recursive t
   	 :makeindex t
 	 :html-preamble "This is just a test"
-	 :html-preamble t
-	 :html-postamble "Test Postamble"
+	 :html-postamble nil
 	 :publishing-function org-html-publish-to-html
+	 :auto-sitemap t
+	 :sitemap-filename "theindex.org"
 	)
 	 ("org-static"
 	 :base-directory "~/org/"
@@ -372,4 +374,4 @@
 
 
 
-
+ 
