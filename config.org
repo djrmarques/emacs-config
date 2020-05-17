@@ -98,33 +98,37 @@
      (setq org-src-window-setup 'current-window)
    #+END_SRC
 ** Org Publish
-*** Create the preamble 
+*** Define the preamble and postamble
 #+begin_src emacs-lisp
-(defvar blog-html-preamble 
-"
-<div class='nav'>
-<ul>
-<li><a href='/'>Home</a></li>
-<li><a href='/blog/index.html'>Blog</a></li>
-<li><a href='http://github.com/NicolasPetton'>GitHub</a></li>
-<li><a href='http://twitter.com/NicolasPetton'>Twitter</a></li>
-<li><a href='/contact.html'>Contact</a></li>
-</ul>
-</div>")
+(defvar blog-preamble "
+	 <div class='nav'>
+	 <ul>
+         <li><a href='cv.html'>CV</a></li>
+         <li><a href='linkedin.com'>Linkedin</a></li>
+         <li><a href='github.com'>Github</a></li>
+         <li><a href='theindex.html'>Blog</a></li>
+         <li><a href='about.html'>About</a></li>
+         </ul>
+         </div>"
+)
+
+(defvar blog-postamble 
+"<p class=\"postamble\">Last Updated %T. Created by %a</p>"
+)
 #+end_src
-*** Sitemap Format function
 *** Define the alist
    #+begin_src emacs-lisp
    (defvar publish-directory-path "~/Projects/djrmarques.github.io/")
       (setq org-publish-project-alist
-      '(("org-notes"
+      `(("org-notes"
          :base-directory "~/Projects/blog/"
 	 :base-extendion "org"
-         :publishing-directory "~/Projects/djrmarques.github.io/"
+         :publishing-directory ,publish-directory-path
+	 :sitemap-title "David Marques"
 	 :recursive t
   	 :makeindex t
-	 :html-preamble ,blog-html-preamble
-	 :html-postamble nil
+	 :html-preamble ,blog-preamble
+	 :html-postamble ,blog-postamble
 	 :publishing-function org-html-publish-to-html
 	 :auto-sitemap t
 	 :sitemap-filename "theindex.org"
@@ -132,12 +136,13 @@
 	 ("org-static"
 	 :base-directory "~/org/"
 	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-	 :publishing-directory "~/Projects/djrmarques.github.io/"
+	 :publishing-function org-html-publish-to-html
 	 :recursive t
 	 :publishing-function org-publish-attachment
 	 )
 	 ("org" :components ("org-notes" "org-static"))
 ))
+
 
    #+end_src
 *** Set Publish Hotkey
