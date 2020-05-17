@@ -266,6 +266,26 @@
      (add-hook 'python-mode-hook 'my/python-mode-hook)
 
    #+END_SRC
+** Virtual Env Wrapper
+#+begin_src emacs-lisp :handling silent
+  (defun create-env ()
+    "Creates a virtual environment named venv"
+    (interactive)
+    (start-process-shell-command "create environment" nil "python3 -m venv venv")
+       )
+
+  (defun activate-env ()
+    "Activates environment named venv"
+    (interactive)
+    (start-process-shell-command "activate environment" nil "source /venv/bin/activate")
+  )
+
+  (defun deactivate ()
+    "Deactivates current virtual environment"
+    (interactive)
+    (start-process-shell-command "deactivate envronment" nil "deactivate")
+  )
+#+end_src
 * Hydra
   #+BEGIN_SRC emacs-lisp
 	  (use-package hydra
