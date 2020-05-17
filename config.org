@@ -92,8 +92,16 @@
    #+END_SRC
 ** Evaluation on code blocks
 #+begin_src emacs-lisp
-  (org-babel-confirm-evaluate nil)
+  (defun enable-run (lang body)
+    nil
+  )
+
+    (setq org-confirm-babel-evaluate 'enable-run)
 #+end_src
+
+#+RESULTS:
+: enable-run
+
 ** Org Babel
    #+BEGIN_SRC emacs-lisp
    (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
