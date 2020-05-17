@@ -33,7 +33,10 @@
 ** Quote word
    #+begin_src emacs-lisp
    #+end_src
-
+** Truncate Lines
+#+begin_src emacs-lisp
+  (toggle-truncate-lines)
+#+end_src
 * Fonts
   #+BEGIN_SRC emacs-lisp
   (set-frame-font "Hack-14" nil t)
