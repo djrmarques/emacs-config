@@ -87,6 +87,10 @@
        
 
    #+END_SRC
+** Evaluation on code blocks
+#+begin_src emacs-lisp
+  (org-babel-confirm-evaluate nil)
+#+end_src
 ** Org Babel
    #+BEGIN_SRC emacs-lisp
    (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
@@ -122,7 +126,7 @@
       (setq org-publish-project-alist
       `(("org-notes"
          :base-directory "~/Projects/blog/"
-	 :base-extendion "org"
+	 :base-extension "org"
          :publishing-directory ,publish-directory-path
 	 :sitemap-title "David Marques"
 	 :recursive t
@@ -235,7 +239,7 @@
      )
    #+END_SRC
 * Python
-** Install Elpy
+** Install 
   #+BEGIN_SRC emacs-lisp
     (use-package elpy
 	:ensure t
@@ -246,6 +250,7 @@
 	(setq python-shell-interpreter "ipython3"
 	    python-shell-interpreter-args "-i")
 	(setq elpy-rpc-python-command "python3")
+	(setq elpy-rpc-virtualenv-path 'current)
     )
     
   #+END_SRC
