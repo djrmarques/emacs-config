@@ -171,16 +171,24 @@
 	      (interactive)
 	      (start-process-shell-command "view-index" nil "next ~/Projects/djrmarques.github.io/theindex.html")
 	      )
-	  
+
+      (defun go-to-public-folder ()
+	(interactive)
+	(dired publish-directory-path)
+      )
+
+
+
 	    (defhydra blog-hydra (global-map "<f6>")
 	      "Hydra for saving the blog posts"
 	      ("p" publish-blog "Publish website")
 	      ("v" view-blog  "View Website")
+	      ("g" go-to-public-folder "Go to public folder") 
       )
 
 
     #+end_src
-
+    
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
