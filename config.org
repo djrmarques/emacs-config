@@ -104,8 +104,11 @@
 
 ** Org Babel
    #+BEGIN_SRC emacs-lisp
-   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
-   (setq org-babel-python-command "python3")
+     (org-babel-do-load-languages 'org-babel-load-languages '(
+							      (python . t)
+							      (jupyter . t)
+							      ))
+     (setq org-babel-python-command "python3")
    #+END_SRC
 
 ** Org source window
@@ -134,9 +137,10 @@
 *** Define the alist
    #+begin_src emacs-lisp
    (defvar publish-directory-path "~/Projects/djrmarques.github.io/")
+   (defvar base-directory-path "~/Projects/blog/")
       (setq org-publish-project-alist
       `(("org-notes"
-         :base-directory "~/Projects/blog/"
+         :base-directory ,base-directory-path
 	 :base-extension "org"
          :publishing-directory ,publish-directory-path
 	 :sitemap-title "David Marques"
@@ -149,9 +153,9 @@
 	 :sitemap-filename "theindex.org"
 	)
 	 ("org-static"
-	 :base-directory "~/org/"
+	 :base-directory ,base-directory-path
+	 :publishing-directory ,publish-directory-path
 	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-	 :publishing-function org-html-publish-to-html
 	 :recursive t
 	 :publishing-function org-publish-attachment
 	 )
@@ -176,8 +180,6 @@
 	(interactive)
 	(dired publish-directory-path)
       )
-
-
 
 	    (defhydra blog-hydra (global-map "<f6>")
 	      "Hydra for saving the blog posts"
@@ -309,6 +311,11 @@
     (interactive)
     (start-process-shell-command "deactivate envronment" nil "deactivate")
   )
+#+end_src
+** Jupyter mode
+#+begin_src emacs-lisp
+(use-package jupyter
+:ensure t)
 #+end_src
 * Hydra
   #+BEGIN_SRC emacs-lisp
