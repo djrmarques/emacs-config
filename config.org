@@ -37,6 +37,39 @@
 #+begin_src emacs-lisp
   (toggle-truncate-lines)
 #+end_src
+* Hydra
+  #+BEGIN_SRC emacs-lisp
+	  (use-package hydra
+	  :ensure t
+	  )
+
+
+	(defun get-org-conf ()
+	  (interactive)
+	  (find-file org-config-file)
+	  )
+      
+	(defun get-init ()
+	  (interactive)
+	  (find-file init-file)
+	  )
+      
+	(defun get-stump ()
+	  (interactive)
+	  (find-file stumpwmconfig)
+	  )
+      
+
+	(defhydra hydra-files (global-map "<f2>")
+	  "Find Files"
+	  ("c" get-org-conf "Find org conf")
+	  ("i" get-init "Find org conf")
+	  ("k" kill-all-buffers "Kill al buffers")
+	  ("o" kill-other-buffers "Kill al buffers")
+	  ("s" get-stump "Stump config")
+    )
+
+  #+END_SRC
 * Fonts
   #+BEGIN_SRC emacs-lisp
   (set-frame-font "Hack-14" nil t)
@@ -75,10 +108,67 @@
     (use-package magit
     :ensure t
     :config
-    (global-set-key (kbd "s-m") 'magit)
+    (global-set-key (kbd "M-m") 'magit)
     )
   #+END_SRC
 
+* Python
+** Install 
+  #+BEGIN_SRC emacs-lisp
+	(use-package elpy
+	    :ensure t
+	    :init
+	    (elpy-enable)
+	    :config
+	    (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+	    (setq python-shell-interpreter "ipython3"
+		python-shell-interpreter-args "-i")
+	    (setq elpy-rpc-python-command "python3")
+	    (setq elpy-rpc-virtualenv-path 'current)
+	)
+  #+END_SRC
+** Variables
+   #+BEGIN_SRC emacs-lisp
+   (setq python-indent-offset 4)
+   (setq indent-tabs-mode nil)
+   #+END_SRC
+** Jedi
+   #+BEGIN_SRC emacs-lisp
+     (use-package company-jedi
+     :ensure t
+     )
+     (defun my/python-mode-hook ()
+       (add-to-list 'company-backends 'company-jedi)
+       )
+
+     (add-hook 'python-mode-hook 'my/python-mode-hook)
+
+   #+END_SRC
+** Virtual Env Wrapper
+#+begin_src emacs-lisp :handling silent
+  (defun create-env ()
+    "Creates a virtual environment named venv"
+    (interactive)
+    (start-process-shell-command "create environment" nil "python3 -m venv venv")
+       )
+
+  (defun activate-env ()
+    "Activates environment named venv"
+    (interactive)
+    (start-process-shell-command "activate environment" nil "source /venv/bin/activate")
+  )
+
+  (defun deactivate ()
+    "Deactivates current virtual environment"
+    (interactive)
+    (start-process-shell-command "deactivate envronment" nil "deactivate")
+  )
+#+end_src
+** Jupyter mode
+#+begin_src emacs-lisp
+(use-package jupyter
+:ensure t)
+#+end_src
 * Org Mode
 ** Agenda
    #+BEGIN_SRC emacs-lisp
@@ -106,7 +196,6 @@
    #+BEGIN_SRC emacs-lisp
      (org-babel-do-load-languages 'org-babel-load-languages '(
 							      (python . t)
-							      (jupyter . t)
 							      ))
      (setq org-babel-python-command "python3")
    #+END_SRC
@@ -259,97 +348,6 @@
        :init (global-flycheck-mode)
      )
    #+END_SRC
-* Python
-** Install 
-  #+BEGIN_SRC emacs-lisp
-    (use-package elpy
-	:ensure t
-	:init
-	(elpy-enable)
-	:config
-	(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-	(setq python-shell-interpreter "ipython3"
-	    python-shell-interpreter-args "-i")
-	(setq elpy-rpc-python-command "python3")
-	(setq elpy-rpc-virtualenv-path 'current)
-    )
-    
-  #+END_SRC
-** Variables
-   #+BEGIN_SRC emacs-lisp
-   (setq python-indent-offset 4)
-   (setq indent-tabs-mode nil)
-   #+END_SRC
-** Jedi
-   #+BEGIN_SRC emacs-lisp
-     (use-package company-jedi
-     :ensure t
-     )
-     (defun my/python-mode-hook ()
-       (add-to-list 'company-backends 'company-jedi)
-       )
-
-     (add-hook 'python-mode-hook 'my/python-mode-hook)
-
-   #+END_SRC
-** Virtual Env Wrapper
-#+begin_src emacs-lisp :handling silent
-  (defun create-env ()
-    "Creates a virtual environment named venv"
-    (interactive)
-    (start-process-shell-command "create environment" nil "python3 -m venv venv")
-       )
-
-  (defun activate-env ()
-    "Activates environment named venv"
-    (interactive)
-    (start-process-shell-command "activate environment" nil "source /venv/bin/activate")
-  )
-
-  (defun deactivate ()
-    "Deactivates current virtual environment"
-    (interactive)
-    (start-process-shell-command "deactivate envronment" nil "deactivate")
-  )
-#+end_src
-** Jupyter mode
-#+begin_src emacs-lisp
-(use-package jupyter
-:ensure t)
-#+end_src
-* Hydra
-  #+BEGIN_SRC emacs-lisp
-	  (use-package hydra
-	  :ensure t
-	  )
-
-
-	(defun get-org-conf ()
-	  (interactive)
-	  (find-file org-config-file)
-	  )
-      
-	(defun get-init ()
-	  (interactive)
-	  (find-file init-file)
-	  )
-      
-	(defun get-stump ()
-	  (interactive)
-	  (find-file stumpwmconfig)
-	  )
-      
-
-	(defhydra hydra-files (global-map "<f2>")
-	  "Find Files"
-	  ("c" get-org-conf "Find org conf")
-	  ("i" get-init "Find org conf")
-	  ("k" kill-all-buffers "Kill al buffers")
-	  ("o" kill-other-buffers "Kill al buffers")
-	  ("s" get-stump "Stump config")
-    )
-
-  #+END_SRC
 * Ivy
 ** Install libraries
   #+BEGIN_SRC emacs-lisp
