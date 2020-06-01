@@ -124,7 +124,7 @@
 	    (setq python-shell-interpreter "ipython3"
 		python-shell-interpreter-args "-i")
 	    (setq elpy-rpc-python-command "python3")
-	    (setq elpy-rpc-virtualenv-path 'current)
+	    (setq elpy-rpc-virtualenv-path "env")
 	)
   #+END_SRC
 ** Variables
@@ -164,7 +164,7 @@
     (start-process-shell-command "deactivate envronment" nil "deactivate")
   )
 #+end_src
-** Jupyter mode
+** Jupyter mode`
 #+begin_src emacs-lisp
 (use-package jupyter
 :ensure t)
@@ -389,6 +389,15 @@
 
      (advice-add #'counsel-M-x :after #'my-demo-function) 
    #+end_src
+* Projectile
+#+begin_src emacs-lisp
+(use-package projectile
+:ensure t
+:init 
+(projectile-mode +1)
+)
+
+#+end_src
 * Common Lisp
   #+BEGIN_SRC emacs-lisp
   (use-package sly
