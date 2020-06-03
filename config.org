@@ -434,7 +434,8 @@
   :init
   (amx-mode))
   #+end_src
-
-
-
- 
+* Windows
+  Windows specific variables
+#+BEGIN_SRC emacs-lisp
+  (when (eq system-type "windows-nt") "Hello")
+#+END_SRC
