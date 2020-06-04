@@ -196,6 +196,7 @@
    #+BEGIN_SRC emacs-lisp
      (org-babel-do-load-languages 'org-babel-load-languages '(
 							      (python . t)
+							      (jupyter . t)
 							      ))
      (setq org-babel-python-command "python3")
    #+END_SRC
