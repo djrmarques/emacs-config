@@ -283,6 +283,7 @@
 ** cdLatex
 #+begin_src emacs-lisp
 (use-package auctex
+:defer t
 :ensure t
 :init
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
@@ -291,9 +292,8 @@
 #+end_src
 
 #+RESULTS:
-: t
-
-* Powerline 
+| turn-on-org-cdlatex | jupyter-org-interaction-mode | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes |
+** Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
       :ensure t
