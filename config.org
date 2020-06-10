@@ -280,7 +280,19 @@
 
 
     #+end_src
-    
+** cdLatex
+#+begin_src emacs-lisp
+(use-package auctex
+:ensure t
+:init
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+)
+
+#+end_src
+
+#+RESULTS:
+: t
+
 * Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
