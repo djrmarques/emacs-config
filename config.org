@@ -235,6 +235,7 @@
          :publishing-directory ,publish-directory-path
 	 :sitemap-title "David Marques"
 	 :recursive t
+	 :exclude ".~."
   	 :makeindex t
 	 :html-preamble ,blog-preamble
 	 :html-postamble ,blog-postamble
@@ -263,7 +264,7 @@
 
 	    (defun view-blog()
 	      (interactive)
-	      (start-process-shell-command "view-index" nil "next ~/Projects/djrmarques.github.io/theindex.html")
+	      (start-process-shell-command "view-index" nil "firefox ~/Projects/djrmarques.github.io/theindex.html")
 	      )
 
       (defun go-to-public-folder ()
