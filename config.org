@@ -235,7 +235,7 @@
          :publishing-directory ,publish-directory-path
 	 :sitemap-title "David Marques"
 	 :recursive t
-	 :exclude ".~."
+	 :exclude ".*~.*\|.*#.*\|.*ltximg*"
   	 :makeindex t
 	 :html-preamble ,blog-preamble
 	 :html-postamble ,blog-postamble
