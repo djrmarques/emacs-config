@@ -199,7 +199,10 @@
 
 #+RESULTS:
 : enable-run
-
+** Pretify entities
+#+begin_src emacs-lisp
+(setq org-pretty-entities t)
+#+end_src
 ** Org Babel
    #+BEGIN_SRC emacs-lisp
      (org-babel-do-load-languages 'org-babel-load-languages '(
@@ -289,7 +292,7 @@
 
 
     #+end_src
-** cdLatex
+* cdLatex
 #+begin_src emacs-lisp
 (use-package auctex
 :defer t
@@ -299,7 +302,7 @@
 )
 
 #+end_src
-** Powerline 
+* Powerline 
   #+BEGIN_SRC emacs-lisp
       (use-package telephone-line
       :ensure t
@@ -307,7 +310,7 @@
       (telephone-line-mode t)
       )
   #+END_SRC
-** Display Time
+* Display Time
    #+BEGIN_SRC emacs-lisp
    (setq display-time-24h-format t)
    (display-time-mode 1)
